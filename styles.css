@@ -369,3 +369,30 @@ button {
         font-size: 0.85rem !important;
     }
 }
+
+/* Ajustes específicos para móviles en horizontal */
+@media (max-width: 932px) and (orientation: landscape) {
+  html, body {
+    overflow: auto !important; /* Permitir scroll si el contenido es más alto que la pantalla */
+    height: auto !important; 
+  }
+
+  .bracket-wrapper {
+    height: auto; /* Quitamos el límite de 75vh para que no se corte */
+    overflow: visible;
+    padding-bottom: 80px; /* Espacio extra para que los botones no tapen el contenido */
+  }
+
+  .title-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .title-container h1 {
+    font-size: 1.2rem !important; /* Texto un poco más pequeño para ganar espacio vertical */
+  }
+
+  #buttons-container {
+    bottom: 10px !important; /* Pegamos los botones un poco más al borde */
+  }
+}
