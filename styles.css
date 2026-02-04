@@ -371,28 +371,32 @@ button {
 }
 
 /* Ajustes específicos para móviles en horizontal */
-@media (max-width: 932px) and (orientation: landscape) {
+@media (max-width: 932px) {
   html, body {
-    overflow: auto !important; /* Permitir scroll si el contenido es más alto que la pantalla */
-    height: auto !important; 
+    /* Cambiamos hidden por clip o lo limitamos solo al eje X si es necesario, 
+       pero para permitir scroll interno, lo ideal es esto: */
+    overflow-x: hidden; 
+    overflow-y: auto;
+    height: 100%; /* Usar 100% es más seguro que 100vh en móviles */
+    position: relative;
   }
 
   .bracket-wrapper {
-    height: auto; /* Quitamos el límite de 75vh para que no se corte */
-    overflow: visible;
-    padding-bottom: 80px; /* Espacio extra para que los botones no tapen el contenido */
+    height: 70vh; 
+    display: block; 
+    /* ESTO ES LO CLAVE PARA EL SCROLL HORIZONTAL */
+    overflow-x: auto !important; 
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Suavidad en iPhone */
+    padding: 20px;
+    white-space: nowrap; /* Evita que los elementos internos se amontonen hacia abajo */
   }
 
-  .title-container {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  .title-container h1 {
-    font-size: 1.2rem !important; /* Texto un poco más pequeño para ganar espacio vertical */
-  }
-
-  #buttons-container {
-    bottom: 10px !important; /* Pegamos los botones un poco más al borde */
+  .bracket {
+    display: inline-grid; /* Cambiado de 'grid' a 'inline-grid' */
+    grid-auto-flow: column; /* Obliga a las columnas a ponerse una al lado de otra */
+    min-width: 1000px; /* O el ancho que sumen todas tus rondas */
+    gap: 20px 40px;
+    align-items: center;
   }
 }
