@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pura Copa - Semifinales</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="semis.css">
 </head>
 <body>
     <div class="title-container">
@@ -14,17 +15,25 @@
     </div>
 
     <div class="bracket-wrapper">
-        <div class="bracket" style="grid-template-columns: repeat(3, 1fr); max-width: 800px;">
+        <div class="bracket semis-bracket">
             
-            <div class="round-title" style="grid-column: 1;">SEMIFINAL</div>
-            <div class="round-title" style="grid-column: 2;">FINAL</div>
-            <div class="round-title" style="grid-column: 3;">SEMIFINAL</div>
+            <!-- BLOQUE 1: SEMIFINAL 1 -->
+            <div class="semi-block">
+                <div class="round-title">SEMIFINAL</div>
+                <div id="s1" class="match"></div>
+            </div>
 
-            <div id="s1" class="match" style="grid-column: 1; grid-row: 2 / span 4;"></div>
+            <!-- BLOQUE 2: FINAL -->
+            <div class="final-block">
+                <div class="round-title">FINAL</div>
+                <div id="f1" class="match final-style"></div>
+            </div>
 
-            <div id="f1" class="match final-style" style="grid-column: 2; grid-row: 2 / span 4;"></div>
-
-            <div id="s2" class="match" style="grid-column: 3; grid-row: 2 / span 4;"></div>
+            <!-- BLOQUE 3: SEMIFINAL 2 -->
+            <div class="semi-block">
+                <div class="round-title">SEMIFINAL</div>
+                <div id="s2" class="match"></div>
+            </div>
 
         </div>
     </div>
@@ -36,38 +45,4 @@
 
     <script src="script.js"></script>
 </body>
-<style>
-/* PC: Se mantiene en 3 columnas */
-.semis-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 900px;
-    align-items: center;
-}
-
-/* MÓVIL: Formato Vertical Impactante */
-@media (max-width: 768px) {
-    .semis-container {
-        display: flex;         /* Cambiamos de Grid a Flex */
-        flex-direction: column; /* Uno debajo de otro */
-        align-items: center;
-        gap: 40px;             /* Espacio generoso entre partidos */
-        width: 100%;
-        max-width: 320px;      /* Ancho controlado para que no se estiren demasiado */
-        margin: 0 auto;
-        padding-bottom: 100px; /* Espacio para que el botón no tape la Semi 2 */
-    }
-
-    .semis-container .match {
-        width: 100%;           /* Los cuadros ocupan todo el ancho del contenedor */
-        height: 85px;          /* Un poco más altos para que luzcan */
-    }
-
-    /* Opcional: Añadir un texto pequeño encima de cada uno en móvil */
-    #s1::before { content: "SEMIFINAL 1"; color: #f59e0b; font-size: 0.7rem; font-weight: 800; margin-bottom: 5px; }
-    #f1::before { content: "GRAN FINAL"; color: #fff; font-size: 0.8rem; font-weight: 900; margin-bottom: 5px; }
-    #s2::before { content: "SEMIFINAL 2"; color: #f59e0b; font-size: 0.7rem; font-weight: 800; margin-bottom: 5px; }
-}
-</style>
 </html>

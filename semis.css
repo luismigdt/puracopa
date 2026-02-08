@@ -1,0 +1,227 @@
+/* ============================================
+   ESTILOS BASE - PC (ESCRITORIO)
+   ============================================ */
+/* ============================================
+   CENTRADO TOTAL SIN TOCAR TAMAÑOS
+   ============================================ */
+
+/* 1. El contenedor padre: Centra el bloque entero en la pantalla */
+.bracket-wrapper {
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    width: 100%;              /* Ocupa todo el ancho para poder centrar */
+    height: 70vh;             /* Altura del área central */
+    margin: 0 auto;
+}
+
+/* 2. El grupo de 3 columnas: No se estira, se queda pegado al centro */
+.semis-bracket {
+    display: flex;
+    flex-direction: row;      
+    justify-content: center; 
+    align-items: flex-start;  /* Títulos alineados arriba */
+    gap: 40px;                /* Espacio entre cuadros */
+    width: max-content;       /* ¡CLAVE! Obliga al grupo a medir solo lo que miden los cuadros */
+}
+
+/* 3. Cada columna individual */
+.semi-block, 
+.final-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* Centra el título justo encima del cuadro */
+    flex: 0 0 auto;           /* Prohíbe que el bloque crezca o se encoja */
+}
+
+/* 4. El Cuadro (Match): Aquí es donde mantenemos tu tamaño */
+.match {
+    /* Eliminamos cualquier width: 100% que pueda venir de otros lados */
+    width: 250px !important;  /* Ajusta este número al tamaño exacto que te gustaba */
+    flex: 0 0 auto;           /* Refuerzo para que no cambie de tamaño */
+}
+
+/* 5. El Título: Centrado perfecto */
+.round-title {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+/* ============================================
+   MÓVIL VERTICAL (max-width:768px)
+   ============================================ */
+@media (max-width: 768px) and (orientation: portrait) {
+
+    .bracket-wrapper {
+        height: auto;
+        min-height: calc(100vh - 160px); /* Resta espacio de cabecera y botones */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    .semis-bracket {
+        display: flex;
+        flex-direction: column; /* Apila los bloques verticalmente */
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        width: 100%;
+    }
+
+    .semi-block,
+    .final-block {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .semi-block .match,
+    .final-block .match {
+        width: 90%;
+        max-width: 350px;
+        min-height: 100px;
+        font-size: 0.95rem;
+    }
+
+    .semi-block .round-title,
+    .final-block .round-title {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+}
+
+/* ============================================
+   MÓVIL HORIZONTAL (max-width:932px)
+   ============================================ */
+@media (max-width: 932px) and (orientation: landscape) {
+
+    .bracket-wrapper {
+        /* Cambiamos height a min-height para que el contenido pueda crecer hacia abajo */
+        min-height: calc(100vh - 100px); 
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0 100px 0; /* Padding inferior extra para los botones */
+        overflow-y: auto; /* Permite scroll vertical si la pantalla es muy baja */
+    }
+
+    .semis-bracket {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+        width: max-content;
+        /* Reducimos un poco la escala para ganar espacio vertical */
+        transform: scale(0.85); 
+        transform-origin: top center;
+    }
+}
+
+/* ============================================
+   AJUSTE DE BOTONES
+   ============================================ */
+#buttons-container {
+    position: fixed; /* O 'sticky' si prefieres que sigan el scroll */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px; /* Altura fija para el área de botones */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent); /* Sutil sombra para legibilidad */
+    z-index: 9999;
+    pointer-events: none;
+}
+
+#buttons-container button {
+    pointer-events: auto;
+    /* Ajuste para que no sean tan altos en horizontal */
+    padding: 10px 30px; 
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+    /* Si el móvil es muy bajito (como un iPhone SE en horizontal) */
+    #buttons-container {
+        position: relative; /* Los botones se ponen al final del scroll, no flotan */
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+/* ============================================
+   TABLETS / PANTALLAS MEDIANAS (769px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .semis-bracket {
+        gap: 20px;
+        max-width: 95%;
+    }
+
+    .semi-block .match,
+    .final-block .match {
+        width: 100%;
+        max-width: 260px;
+        min-height: 160px;
+    }
+}
+
+/* ============================================
+   PANTALLAS GRANDES (>1400px)
+   ============================================ */
+@media (min-width: 1400px) {
+    .semis-bracket {
+        max-width: 1300px;
+        gap: 60px;
+    }
+
+    .semi-block .match,
+    .final-block .match {
+        max-width: 320px;
+        min-height: 220px;
+    }
+}
+
+/* ============================================
+   BOTONES ATRÁS / SIGUIENTE (FIJOS)
+   ============================================ */
+#buttons-container {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+#buttons-container button {
+    pointer-events: auto;
+    min-width: 150px;
+    padding: 12px 35px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-atras {
+    background-color: rgba(71, 85, 105, 0.8);
+    color: #f1f5f9;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-atras:hover {
+    background-color: rgba(100, 116, 139, 1);
+    transform: translateY(-2px);
+}
