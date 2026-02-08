@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pura Copa - Cuartos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="title-container">
+		<img src="puracopa.png" alt="Logo" />
+		<h1>PURA COPA</h1>
+		<img src="puracopa.png" alt="Logo" />
+	</div>
+
+    <div class="bracket-wrapper">
+        <div class="bracket" style="grid-template-columns: repeat(5, 1fr); max-width: 1000px;">
+    <div class="round-title" style="grid-column: 1;">CUARTOS</div>
+    <div class="round-title" style="grid-column: 2;">SEMIFINAL</div>
+    <div class="round-title" style="grid-column: 3;">FINAL</div>
+    <div class="round-title" style="grid-column: 4;">SEMIFINAL</div>
+    <div class="round-title" style="grid-column: 5;">CUARTOS</div>
+
+    <div id="q1" class="match" style="grid-column: 1; grid-row: 2 / span 2;"></div>
+    <div id="q2" class="match" style="grid-column: 1; grid-row: 5 / span 2;"></div>
+
+    <div id="s1" class="match" style="grid-column: 2; grid-row: 3 / span 3;"></div>
+
+    <div id="f1" class="match final-style" style="grid-column: 3; grid-row: 3 / span 3;"></div>
+
+    <div id="s2" class="match" style="grid-column: 4; grid-row: 3 / span 3;"></div>
+
+    <div id="q3" class="match" style="grid-column: 5; grid-row: 2 / span 2;"></div>
+    <div id="q4" class="match" style="grid-column: 5; grid-row: 5 / span 2;"></div>
+</div>
+    </div>
+
+    <div id="buttons-container">
+        <button class="btn-atras" onclick="window.location.href='index.html'">ATRÁS</button>
+        <button onclick="window.location.href='semis.html'">SIGUIENTE</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
