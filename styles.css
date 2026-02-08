@@ -173,10 +173,11 @@ html, body {
         filter: brightness(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
     }
 }
-/* 4. BOTÓN (12% de altura - Siempre visible) */
+
+/* 4. BOTÓN (Siempre visible y pegado abajo) */
 #buttons-container {
     position: fixed;   /* Flota sobre el contenido */
-    bottom: 30px;      /* Distancia desde abajo */
+    bottom: 15px;      /* MÁS PEGADO AL BORDE INFERIOR */
     left: 0;
     right: 0;
     display: flex;
@@ -276,11 +277,6 @@ button {
     background: rgba(251, 191, 36, 0.2);
 }
 
-#buttons-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Espacio entre botones */
-}
 .btn-atras {
     background-color: rgba(71, 85, 105, 0.8) !important; /* Gris azulado profesional */
     color: #f1f5f9 !important; /* Texto casi blanco */
@@ -292,111 +288,110 @@ button {
     background-color: rgba(100, 116, 139, 1) !important; /* Un poco más claro al pasar el ratón */
     transform: translateY(-2px);
 }
+
 /* ========================================
-   SOLUCIÓN BOTÓN MÓVIL Y SCROLL
+   SOLUCIÓN MÓVIL CON SCROLL HORIZONTAL Y VERTICAL
    ======================================== */
 
 @media (max-width: 768px) {
   html, body {
-    overflow: hidden; 
-    height: 100vh;
+    overflow-x: hidden; 
+    overflow-y: auto;
+    height: 100%;
   }
 
   .title-container {
     height: auto;
     display: flex;
-    flex-direction: row;    /* LOGO - TEXTO - LOGO en la misma fila */
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 8px;               /* Espacio reducido entre elementos */
+    gap: 8px;
     margin-top: 15px;
     margin-bottom: 15px;
     width: 100%;
-    padding: 0 10px;        /* Evita que toque los bordes del móvil */
+    padding: 0 10px;
   }
 
   .title-container img {
-    height: 30px !important; /* Logos pequeños para que quepa el texto al lado */
+    height: 30px !important;
     width: auto;
-    flex-shrink: 0;          /* Evita que el logo se aplaste */
+    flex-shrink: 0;
   }
 
   .title-container h1 {
-    font-size: 1.6rem !important; /* Tamaño clave para que quepa todo en una línea */
+    font-size: 1.6rem !important;
     line-height: 1;
     letter-spacing: 0px;
     text-align: center;
     margin: 0;
-    white-space: nowrap;     /* Obliga a "PURA COPA" a no dividirse */
+    white-space: nowrap;
     text-shadow: 2px 2px 0px #000;
   }
 
   .bracket-wrapper {
-    height: 75vh; /* Bajamos un poco para dar aire a los botones */
-    display: block; 
-    overflow-x: auto; 
-    overflow-y: auto; 
+    height: 75vh;
+    display: block;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
-    padding: 20px 10px;
-  }
-
- .bracket {
-    display: grid;
-    margin: 0 auto;       /* Centra el bloque entero */
-    gap: 20px 30px;      /* Espacio controlado entre cuadros */
-    width: 95%;          /* Casi todo el ancho disponible */
-    max-width: 1000px;   /* Pero que no se pase de aquí para que no se "estire" */
-    height: auto;        /* Que el alto lo dicten los cuadros */
-    align-items: center; 
-}
-
-  /* CONTENEDOR DE BOTONES (ATRÁS Y SIGUIENTE) */
-  #buttons-container {
-        position: fixed !important;
-        bottom: 20px !important;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        z-index: 10000;
-        pointer-events: none;
-    }
-
-    button {
-        pointer-events: auto;
-        padding: 10px 20px !important;
-        font-size: 0.85rem !important;
-    }
-}
-
-/* Ajustes específicos para móviles en horizontal */
-@media (max-width: 932px) {
-  html, body {
-    /* Cambiamos hidden por clip o lo limitamos solo al eje X si es necesario, 
-       pero para permitir scroll interno, lo ideal es esto: */
-    overflow-x: hidden; 
-    overflow-y: auto;
-    height: 100%; /* Usar 100% es más seguro que 100vh en móviles */
-    position: relative;
-  }
-
-  .bracket-wrapper {
-    height: 70vh; 
-    display: block; 
-    /* ESTO ES LO CLAVE PARA EL SCROLL HORIZONTAL */
-    overflow-x: auto !important; 
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* Suavidad en iPhone */
-    padding: 20px;
-    white-space: nowrap; /* Evita que los elementos internos se amontonen hacia abajo */
+    padding: 20px 10px 80px 10px; /* Añadido padding-bottom para que no tape el botón */
   }
 
   .bracket {
-    display: inline-grid; /* Cambiado de 'grid' a 'inline-grid' */
-    grid-auto-flow: column; /* Obliga a las columnas a ponerse una al lado de otra */
-    min-width: 1000px; /* O el ancho que sumen todas tus rondas */
+    display: inline-grid;
+    min-width: 1000px;
+    gap: 20px 30px;
+    height: auto;
+    align-items: center;
+    margin: 0;
+  }
+
+  #buttons-container {
+    position: fixed !important;
+    bottom: 10px !important; /* MÁS ABAJO EN MÓVIL */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10000;
+    pointer-events: none;
+  }
+
+  button {
+    pointer-events: auto;
+    padding: 10px 20px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Ajustes específicos para móviles en horizontal (landscape) */
+@media (max-width: 932px) and (orientation: landscape) {
+  html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  .bracket-wrapper {
+    height: 70vh;
+    display: block;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px 20px 80px 20px; /* Añadido padding-bottom */
+  }
+
+  .bracket {
+    display: inline-grid;
+    grid-auto-flow: column;
+    min-width: 1200px;
     gap: 20px 40px;
     align-items: center;
+  }
+
+  #buttons-container {
+    bottom: 10px !important; /* MÁS ABAJO EN LANDSCAPE */
   }
 }
