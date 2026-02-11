@@ -117,69 +117,62 @@ button {
     }
 }
 
-Entendido, vamos a ser quirúrgicos. El objetivo es que el título y los botones recuperen su presencia (tamaño original) y que sea exclusivamente el cuadro amarillo el que se estreche (reduzca su altura) para que todo encaje en la pantalla sin scroll.
-
-Aquí tienes el CSS ajustado. He devuelto los tamaños a los títulos y botones, y he limitado la altura del cuadro:
-
-CSS
 /* ============================================================
-   AJUSTE PARA MÓVIL HORIZONTAL (LANDSCAPE)
+   SOLUCIÓN UNIVERSAL: ADAPTACIÓN AUTOMÁTICA A TODO MÓVIL
    ============================================================ */
 @media (orientation: landscape) and (max-height: 500px) {
 
+    /* 1. Forzamos que el contenedor ocupe EXACTAMENTE la pantalla visible */
     .final-main-wrapper {
         height: 100vh !important;
+        height: 100dvh !important; /* Unidad especial para móviles (ignora barras del navegador) */
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important; 
-        padding: 10px !important;
-        overflow: hidden !important; 
+        justify-content: space-evenly !important; /* Reparte el espacio de forma equitativa */
+        padding: 5px !important;
+        overflow: hidden !important; /* Prohibido el scroll */
+        box-sizing: border-box;
     }
 
-    /* 1. TÍTULO: Tamaño original (legible y grande) */
+    /* 2. TÍTULOS: Permitimos que se adapten un poco si no hay espacio */
     .title-container {
-        margin-top: 0 !important;
-        margin-bottom: 10px !important;
-        transform: none !important; /* Quitamos el achicamiento */
+        flex-shrink: 1; /* Si falta espacio, el título puede achicarse un pelo */
+        margin: 0 !important;
     }
 
     .grand-final-title {
-        font-size: 1.8rem !important; /* Tamaño estándar original */
-        margin-bottom: 5px !important;
+        font-size: clamp(1rem, 4vh, 1.8rem) !important; /* Tamaño fluido según la pantalla */
+        margin: 0 !important;
     }
 
-    .title-container img {
-        height: 40px !important; /* Tamaño original de logos */
-    }
-
-    /* 2. EL CUADRO: Es el único que reducimos de altura */
+    /* 3. EL CUADRO: Altura dinámica (nunca más del 40% de la pantalla) */
     .final-box-glow {
-        flex: none !important;
-        width: 90% !important; 
+        width: 90% !important;
         max-width: 500px;
-        /* Reducimos la altura del cuadro para que "suelte" los botones */
-        height: 120px !important; 
-        min-height: auto !important;
+        height: 35vh !important; /* Se adapta al 35% de la altura total del móvil */
+        min-height: 80px !important; 
         margin: 0 auto !important;
-        padding: 5px 20px !important; /* Menos relleno arriba/abajo */
+        padding: 5px 15px !important;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        flex-shrink: 2; /* Es el primero en encogerse si los botones no caben */
     }
 
-    /* 3. BOTONES: Tamaño original y pegados debajo */
+    /* 4. BOTONES: Siempre presentes al final */
     #buttons-container {
         position: relative !important;
-        margin-top: 15px !important; /* Espacio para que respire debajo del cuadro */
-        padding-bottom: 0 !important;
+        margin: 0 !important;
+        padding: 5px 0 !important;
         display: flex !important;
         justify-content: center;
         gap: 20px !important;
+        flex-shrink: 0; /* PROHIBIDO encogerse: los botones son sagrados */
     }
 
     button {
-        padding: 12px 30px !important; /* Tus botones grandes originales */
-        font-size: 1rem !important;      /* Tu letra original */
-        height: auto !important;
+        padding: 10px 25px !important; /* Tamaño cómodo */
+        font-size: 0.9rem !important;
+        white-space: nowrap; /* Que el texto no se rompa */
     }
 }
