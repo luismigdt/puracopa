@@ -48,94 +48,63 @@
 }
 
 /* ============================================
-   MÓVIL RESPONSIVE (HORIZONTAL Y VERTICAL)
+   SOLUCIÓN FINAL: MÓVIL (VERTICAL Y HORIZONTAL)
    ============================================ */
 @media (max-width: 932px) {
-
-    /* Contenedor general */
-    .bracket-wrapper {
-        display: flex;
-        flex-direction: column; /* Todo en columna: cuadros arriba, botones abajo */
-        align-items: center;
-        justify-content: flex-start;
-        width: 100%;
-        min-height: calc(100vh - 100px); /* Ajusta según header si lo hay */
-        padding: 20px 10px;
-        box-sizing: border-box;
-        overflow-y: auto; /* Permite scroll vertical si no cabe todo */
+    html, body {
+        /* Permitimos scroll porque en horizontal el contenido es más alto que la pantalla */
+        overflow-y: auto !important; 
+        height: auto !important;
+        min-height: 100vh;
     }
 
-    /* Grupo de semifinales/finales */
-    .semis-bracket {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap; /* Los bloques bajan si no caben en la fila */
-        justify-content: center;
-        align-items: flex-start;
-        gap: 20px; 
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* Cada bloque individual (semi/final) */
-    .semi-block,
-    .final-block {
-        flex: 1 1 250px; /* Se adapta al ancho disponible */
-        max-width: 300px; 
+    .final-main-wrapper {
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        justify-content: flex-start; /* Empezar desde arriba */
+        padding-bottom: 100px; /* Espacio para que los botones no tapen el cuadro */
     }
 
-    /* Cada cuadro (match) */
-    .semi-block .match,
-    .final-block .match {
-        width: 100%;
-        min-height: 120px;
-        max-height: 250px;
+    /* Ajuste del Cuadro Dorado para que no se desborde */
+    .final-box-glow {
+        width: 90% !important;
+        max-width: 400px;
+        min-height: auto !important; /* Que el contenido mande */
+        padding: 20px;
+        margin: 0 auto;
     }
 
-    /* Títulos encima de cada cuadro */
-    .semi-block .round-title,
-    .final-block .round-title {
-        text-align: center;
-        font-size: 1rem;
-        margin-bottom: 10px;
-        width: 100%;
-    }
-
-    /* BOTONES ABAJO: no flotan sobre los cuadros */
+    /* BOTONES: El gran problema */
     #buttons-container {
-        position: relative; /* Queda al final del bracket */
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 20px;
-        padding-bottom: 20px;
-        background: none;
-        pointer-events: auto;
-        z-index: 10;
+        /* Cambiamos de fixed a static/relative para que sigan el flujo del scroll */
+        position: relative !important;
+        bottom: auto !important;
+        margin-top: 30px;
+        padding-bottom: 40px;
+        pointer-events: auto !important;
+        opacity: 1 !important;
+        display: flex !important;
+        visibility: visible !important;
+    }
+}
+
+/* ============================================
+   AJUSTE ESPECÍFICO PARA HORIZONTAL (LANDSCAPE)
+   ============================================ */
+@media (orientation: landscape) and (max-height: 500px) {
+    .grand-final-title {
+        font-size: 1.4rem !important;
+        margin-bottom: 15px;
     }
 
-    #buttons-container button {
-        min-width: 120px;
-        padding: 10px 25px;
-        font-size: 0.95rem;
-        font-weight: bold;
-        border-radius: 50px;
-        cursor: pointer;
-        transition: transform 0.2s, background-color 0.2s;
+    .final-box-glow {
+        /* En horizontal bajamos el tamaño para que quepa en el primer vistazo */
+        max-width: 380px;
+        padding: 15px;
     }
-
-    .btn-atras {
-        background-color: rgba(71, 85, 105, 0.8);
-        color: #f1f5f9;
-        border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .btn-atras:hover {
-        background-color: rgba(100, 116, 139, 1);
-        transform: translateY(-2px);
+    
+    .final-main-wrapper {
+        padding-top: 10px;
     }
 }
