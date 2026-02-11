@@ -7,18 +7,19 @@
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100vh; /* Altura total de la pantalla */
-  width: 100vw;
-  overflow: hidden; /* Elimina el scroll */
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(135deg, #4b0000, #800020, #1f0000);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-  color: #e2e8f0;
-  font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Altura total de la pantalla */
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #4b0000, #800020, #1f0000);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 @keyframes gradient {
