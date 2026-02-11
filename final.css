@@ -1,6 +1,3 @@
-/* ========================================
-   RESETEO TOTAL: SEGURO Y SIN SCROLL
-   ======================================== */
 html, body {
     margin: 0;
     padding: 0;
@@ -9,7 +6,8 @@ html, body {
     width: 100vw;
     overflow-y: auto; 
     overflow-x: hidden;
-    overscroll-behavior-y: contain; 
+    overscroll-behavior-y: none; /* Permite pull-to-refresh */
+    -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
     display: flex;
     flex-direction: column;
     background: linear-gradient(135deg, #4b0000, #800020, #1f0000);
@@ -23,7 +21,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centra todo el bloque en la pantalla */
+    justify-content: center;
     height: 100%;
     width: 100%;
     padding: 10px;
@@ -47,7 +45,6 @@ html, body {
 .final-box-glow {
     width: 90%;
     max-width: 450px;
-    /* Altura fija: lo suficiente para los equipos pero no para tapar botones */
     height: 180px !important; 
     background: linear-gradient(145deg, #f59e0b, #d97706);
     border: 4px solid #fff;
@@ -66,7 +63,7 @@ html, body {
     justify-content: center;
     gap: 15px;
     width: 100%;
-    margin-top: 5px;
+    margin-top: 15px;
     flex-shrink: 0;
 }
 
@@ -78,61 +75,77 @@ button {
     border-radius: 50px;
     border: none;
     box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    cursor: pointer;
 }
 
 /* ========================================
-   AJUSTE ESPECIAL PARA CUANDO LO TUMBASH
+   AJUSTE ESPECIAL PARA CUANDO LO TUMBAS
    ======================================== */
 @media (orientation: landscape) and (max-height: 500px) {
+
+    html, body {
+        overscroll-behavior-y: auto; /* Permite pull-to-refresh también en horizontal */
+    }
 
     .final-main-wrapper {
         display: flex !important;
         flex-direction: column !important;
-        justify-content: flex-start !important; /* Alinea desde arriba */
-        height: 100dvh !important;
+        justify-content: center !important; /* Mantiene todo centrado y visible */
+        align-items: center !important;
+        height: 100dvh !important; /* Altura fija para evitar scroll */
         padding: 5px !important;
-        overflow-y: auto !important; /* Si el móvil es diminuto, permite scroll en vez de pisar */
+        overflow: hidden !important; /* Sin scroll, todo visible */
+        gap: 5px !important; /* Separación mínima entre elementos */
     }
 
     /* TÍTULO: Muy pequeño para dejar aire */
     .title-container {
-        margin: 2px 0 !important;
-        transform: scale(0.7);
+        margin: 0 !important;
+        transform: scale(0.6); /* Más pequeño para ahorrar espacio */
+        transform-origin: center;
     }
 
-    /* EL CUADRO: Ahora es flexible, no puede medir 180px si no hay sitio */
+    /* EL CUADRO: Compacto y ajustado */
     .final-box-glow {
-        width: 85% !important;
-        max-width: 400px;
-        height: auto !important; /* Se ajusta al texto */
+        width: 80% !important;
+        max-width: 350px;
+        height: auto !important;
         min-height: 60px !important; 
-        max-height: 100px !important; /* Límite estricto para no pisar botones */
-        padding: 5px 15px !important;
-        margin: 5px auto !important;
-        z-index: 1; /* Por debajo de los botones */
+        max-height: 85px !important; /* Más pequeño para dejar espacio a botones */
+        padding: 8px 12px !important;
+        margin: 3px auto !important;
+        font-size: 0.85rem; /* Texto más pequeño dentro del cuadro */
+        position: relative;
+        z-index: 1;
     }
 
-    /* LOS BOTONES: Con su propio espacio reservado */
+    /* LOS BOTONES: Siempre visibles debajo */
     #buttons-container {
         position: relative !important;
-        margin-top: 10px !important;
-        margin-bottom: 10px !important;
+        margin-top: 8px !important;
+        margin-bottom: 5px !important;
         padding: 0 !important;
         display: flex !important;
         justify-content: center;
-        gap: 15px !important;
-        z-index: 10; /* Siempre por encima si algo fallara */
-        clear: both; /* Evita que nada se le pegue */
+        align-items: center;
+        gap: 10px !important;
+        z-index: 10 !important;
+        width: 100%;
     }
 
     button {
         padding: 8px 20px !important;
         font-size: 0.85rem !important;
+        white-space: nowrap;
     }
 }
 
 /* AJUSTE PARA VERTICAL (Para que no se rompa nada) */
 @media (orientation: portrait) {
+    html, body {
+        overscroll-behavior-y: auto; /* Permite pull-to-refresh en vertical */
+    }
+
     .final-box-glow {
         height: auto !important;
         min-height: 150px !important;
