@@ -117,57 +117,69 @@ button {
     }
 }
 
+Entendido, vamos a ser quirúrgicos. El objetivo es que el título y los botones recuperen su presencia (tamaño original) y que sea exclusivamente el cuadro amarillo el que se estreche (reduzca su altura) para que todo encaje en la pantalla sin scroll.
+
+Aquí tienes el CSS ajustado. He devuelto los tamaños a los títulos y botones, y he limitado la altura del cuadro:
+
+CSS
+/* ============================================================
+   AJUSTE PARA MÓVIL HORIZONTAL (LANDSCAPE)
+   ============================================================ */
 @media (orientation: landscape) and (max-height: 500px) {
 
     .final-main-wrapper {
-        height: 100vh !important; /* Forzamos que el fondo ocupe solo la pantalla visible */
+        height: 100vh !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important; /* Todo el grupo al centro */
-        padding: 5px !important;
-        overflow: hidden !important; /* Bloqueamos el scroll */
+        justify-content: center !important; 
+        padding: 10px !important;
+        overflow: hidden !important; 
     }
 
-    /* Título aún más discreto para ganar espacio arriba */
+    /* 1. TÍTULO: Tamaño original (legible y grande) */
     .title-container {
-        margin: 0 !important;
-        transform: scale(0.7); 
-        flex-shrink: 0;
+        margin-top: 0 !important;
+        margin-bottom: 10px !important;
+        transform: none !important; /* Quitamos el achicamiento */
     }
 
     .grand-final-title {
-        font-size: 1.1rem !important;
-        margin-bottom: 2px !important;
+        font-size: 1.8rem !important; /* Tamaño estándar original */
+        margin-bottom: 5px !important;
     }
 
-    /* EL CUADRO: Reducimos su altura máxima para que los botones suban */
+    .title-container img {
+        height: 40px !important; /* Tamaño original de logos */
+    }
+
+    /* 2. EL CUADRO: Es el único que reducimos de altura */
     .final-box-glow {
         flex: none !important;
-        width: 85% !important; 
-        max-width: 450px;
-        /* Bajamos de 55vh a 45vh para asegurar que los botones entren */
-        max-height: 45vh !important; 
-        margin: 5px auto !important;
-        padding: 8px 15px !important; /* Relleno interno más apretado */
+        width: 90% !important; 
+        max-width: 500px;
+        /* Reducimos la altura del cuadro para que "suelte" los botones */
+        height: 120px !important; 
+        min-height: auto !important;
+        margin: 0 auto !important;
+        padding: 5px 20px !important; /* Menos relleno arriba/abajo */
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
-    /* BOTONES: Los pegamos al cuadro eliminando márgenes */
+    /* 3. BOTONES: Tamaño original y pegados debajo */
     #buttons-container {
         position: relative !important;
-        margin-top: 5px !important; /* Distancia mínima */
-        padding-bottom: 5px !important;
+        margin-top: 15px !important; /* Espacio para que respire debajo del cuadro */
+        padding-bottom: 0 !important;
         display: flex !important;
         justify-content: center;
-        gap: 15px !important;
-        flex-shrink: 0;
+        gap: 20px !important;
     }
 
     button {
-        padding: 6px 20px !important; /* Botones un pelín más bajos */
-        font-size: 0.8rem !important;
+        padding: 12px 30px !important; /* Tus botones grandes originales */
+        font-size: 1rem !important;      /* Tu letra original */
         height: auto !important;
     }
 }
