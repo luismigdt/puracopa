@@ -54,7 +54,7 @@
    AJUSTE SOLO PARA LANDSCAPE CON POCA ALTURA
    ======================================================== */
 
-@media (orientation: landscape) and (max-height: 500px) {
+@media (orientation: landscape) {
 
     .title-container {
         height: 15vh !important;
@@ -67,9 +67,9 @@
         margin-top: -10px;
     }
 
-    /* 🔥 Aquí está la corrección importante */
     #buttons-container {
         position: static !important;
         margin-top: 25px;
     }
 }
+
