@@ -90,18 +90,18 @@ button {
     .final-main-wrapper {
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important; /* Mantiene todo centrado y visible */
+        justify-content: center !important;
         align-items: center !important;
-        height: 100dvh !important; /* Altura fija para evitar scroll */
-        padding: 5px !important;
-        overflow: hidden !important; /* Sin scroll, todo visible */
-        gap: 5px !important; /* Separación mínima entre elementos */
+        height: 100dvh !important;
+        padding: 10px !important;
+        overflow-y: auto !important; /* Permite scroll si es necesario */
+        box-sizing: border-box;
     }
 
     /* TÍTULO: Muy pequeño para dejar aire */
     .title-container {
-        margin: 0 !important;
-        transform: scale(0.6); /* Más pequeño para ahorrar espacio */
+        margin: 0 0 5px 0 !important;
+        transform: scale(0.65);
         transform-origin: center;
     }
 
@@ -110,32 +110,33 @@ button {
         width: 80% !important;
         max-width: 350px;
         height: auto !important;
-        min-height: 60px !important; 
-        max-height: 85px !important; /* Más pequeño para dejar espacio a botones */
-        padding: 8px 12px !important;
-        margin: 3px auto !important;
-        font-size: 0.85rem; /* Texto más pequeño dentro del cuadro */
+        min-height: 80px !important; 
+        max-height: 100px !important;
+        padding: 10px 15px !important;
+        margin: 5px auto !important;
+        font-size: 0.9rem;
         position: relative;
         z-index: 1;
     }
 
-    /* LOS BOTONES: Siempre visibles debajo */
+    /* BOTONES ABAJO SIN SUPERPONERSE - IGUAL QUE SEMIS */
     #buttons-container {
         position: relative !important;
-        margin-top: 8px !important;
-        margin-bottom: 5px !important;
-        padding: 0 !important;
+        width: 100% !important;
         display: flex !important;
-        justify-content: center;
-        align-items: center;
-        gap: 10px !important;
-        z-index: 10 !important;
-        width: 100%;
+        justify-content: center !important;
+        gap: 15px !important;
+        margin-top: 20px !important;
+        padding-bottom: 20px !important;
+        background: none !important;
+        pointer-events: auto !important;
+        z-index: 10;
     }
 
     button {
-        padding: 8px 20px !important;
-        font-size: 0.85rem !important;
+        min-width: 120px !important;
+        padding: 10px 25px !important;
+        font-size: 0.95rem !important;
         white-space: nowrap;
     }
 }
