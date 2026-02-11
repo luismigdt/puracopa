@@ -1,36 +1,32 @@
 /* ========================================================
-
+   FINAL - ESTILOS PRINCIPALES
    ======================================================== */
 
-/* 1. Forzamos que la cabecera sea sagrada (18vh como en styles.css) */
-
-
-/* 2. El contenedor de la Final NO debe centrar a la fuerza */
+/* Contenedor principal */
 .final-main-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Alinea arriba, como en las llaves */
+    justify-content: flex-start;
     width: 100%;
-    /* Quitamos el flex: 1 para que no flote en el medio */
-    height: auto !important; 
+    height: auto !important;
     padding: 0 20px;
 }
 
-/* 3. El título "GRAN FINAL" con tamaño original */
+/* Título */
 .grand-final-title {
     color: #f59e0b;
-    font-size: 1.8rem; /* Tamaño fijo, no dinámico */
+    font-size: 1.8rem;
     font-weight: 900;
     margin-bottom: 25px;
     text-shadow: 2px 2px 0px #000;
     text-transform: uppercase;
 }
 
-/* 4. El Cuadro Dorado - TAMAÑO FIJO (Como tus otros cuadros) */
+/* Cuadro dorado */
 .final-box-glow {
     width: 90%;
-    max-width: 480px; /* Ancho que tenías antes */
+    max-width: 480px;
     min-height: 200px;
     background: linear-gradient(145deg, #f59e0b, #d97706) !important;
     border: 4px solid #fff !important;
@@ -43,7 +39,7 @@
     box-sizing: border-box;
 }
 
-/* 5. BOTONES: Los dejamos donde estaban en styles.css */
+/* Botones - comportamiento normal (fijos abajo) */
 #buttons-container {
     position: fixed !important;
     bottom: 30px !important;
@@ -55,26 +51,25 @@
 }
 
 /* ========================================================
-   AJUSTE ÚNICAMENTE PARA MÓVIL GIRADO (Para que no se tape)
+   AJUSTE SOLO PARA LANDSCAPE CON POCA ALTURA
    ======================================================== */
+
 @media (orientation: landscape) and (max-height: 500px) {
-    /* Aquí sí o sí hay que reducir un poco porque no hay espacio físico */
+
     .title-container {
         height: 15vh !important;
         margin-bottom: 10px !important;
     }
-    
-    .final-main-wrapper {
-        padding-bottom: 80px;
-    }
 
     .final-box-glow {
-        transform: scale(0.8);
-        margin-top: -20px;
+        transform: scale(0.85);
+        transform-origin: top center;
+        margin-top: -10px;
     }
-    .buttons-container {
-        position: relative;
-        bottom: auto;
-        margin-top: 20px;
+
+    /* 🔥 Aquí está la corrección importante */
+    #buttons-container {
+        position: static !important;
+        margin-top: 25px;
     }
 }
