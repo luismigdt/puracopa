@@ -74,15 +74,59 @@ button {
 /* ========================================
    AJUSTE ESPECIAL PARA CUANDO LO TUMBASH
    ======================================== */
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-height: 500px) {
+
+    .final-main-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important; /* Alinea desde arriba */
+        height: 100dvh !important;
+        padding: 5px !important;
+        overflow-y: auto !important; /* Si el móvil es diminuto, permite scroll en vez de pisar */
+    }
+
+    /* TÍTULO: Muy pequeño para dejar aire */
+    .title-container {
+        margin: 2px 0 !important;
+        transform: scale(0.7);
+    }
+
+    /* EL CUADRO: Ahora es flexible, no puede medir 180px si no hay sitio */
     .final-box-glow {
-        height: 110px !important; /* Más bajito si el móvil está tumbado */
-        margin: 5px 0 !important;
+        width: 85% !important;
+        max-width: 400px;
+        height: auto !important; /* Se ajusta al texto */
+        min-height: 60px !important; 
+        max-height: 100px !important; /* Límite estricto para no pisar botones */
+        padding: 5px 15px !important;
+        margin: 5px auto !important;
+        z-index: 1; /* Por debajo de los botones */
     }
-    .grand-final-title {
-        font-size: 1.4rem !important;
+
+    /* LOS BOTONES: Con su propio espacio reservado */
+    #buttons-container {
+        position: relative !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: center;
+        gap: 15px !important;
+        z-index: 10; /* Siempre por encima si algo fallara */
+        clear: both; /* Evita que nada se le pegue */
     }
-    .title-container img {
-        height: 30px;
+
+    button {
+        padding: 8px 20px !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* AJUSTE PARA VERTICAL (Para que no se rompa nada) */
+@media (orientation: portrait) {
+    .final-box-glow {
+        height: auto !important;
+        min-height: 150px !important;
+        max-height: 300px !important;
     }
 }
