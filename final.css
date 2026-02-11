@@ -2,14 +2,11 @@
    FINAL - ESTILOS PRINCIPALES
    ======================================================== */
 
-/* Contenedor principal */
 .final-main-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     width: 100%;
-    height: auto !important;
     padding: 0 20px;
 }
 
@@ -23,15 +20,15 @@
     text-transform: uppercase;
 }
 
-/* Cuadro dorado */
+/* Cuadro */
 .final-box-glow {
     width: 90%;
     max-width: 480px;
     min-height: 200px;
-    background: linear-gradient(145deg, #f59e0b, #d97706) !important;
-    border: 4px solid #fff !important;
+    background: linear-gradient(145deg, #f59e0b, #d97706);
+    border: 4px solid #fff;
     border-radius: 24px;
-    padding: 25px !important;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -39,10 +36,10 @@
     box-sizing: border-box;
 }
 
-/* Botones - comportamiento normal (fijos abajo) */
+/* BOTONES - comportamiento normal (vertical) */
 #buttons-container {
-    position: fixed !important;
-    bottom: 30px !important;
+    position: fixed;
+    bottom: 30px;
     left: 0;
     right: 0;
     display: flex;
@@ -51,25 +48,14 @@
 }
 
 /* ========================================================
-   AJUSTE SOLO PARA LANDSCAPE CON POCA ALTURA
+   SOLO CUANDO EL MÓVIL ESTÁ GIRADO
    ======================================================== */
 
 @media (orientation: landscape) {
 
-    .title-container {
-        height: 15vh !important;
-        margin-bottom: 10px !important;
-    }
-
-    .final-box-glow {
-        transform: scale(0.85);
-        transform-origin: top center;
-        margin-top: -10px;
-    }
-
     #buttons-container {
-        position: static !important;
+        position: static;
         margin-top: 25px;
     }
-}
 
+}
