@@ -1,178 +1,88 @@
 /* ========================================
-   1. ESTILOS GLOBALES Y FONDO ROJO (ORIGINAL)
+   RESETEO TOTAL: SEGURO Y SIN SCROLL
    ======================================== */
-* {
-    box-sizing: border-box;
-}
-
 html, body {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    width: 100vw;
-    overflow-x: hidden;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    /* TU FONDO ROJO ORIGINAL */
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden; /* Prohibido el scroll */
     background: linear-gradient(135deg, #4b0000, #800020, #1f0000);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    color: #e2e8f0;
-    font-family: 'Segoe UI', sans-serif;
 }
 
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* ========================================
-   2. ESTRUCTURA DE LA PÁGINA FINAL
-   ======================================== */
 .final-main-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Centra todo el bloque en la pantalla */
+    height: 100%;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
 }
 
+/* 1. TÍTULO: Tamaño fijo y controlado */
 .title-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 30px;
-    margin-top: 20px;
-}
-
-.title-container img {
-    height: 80px;
-    width: auto;
+    margin-bottom: 10px;
+    flex-shrink: 0;
 }
 
 .grand-final-title {
     color: #f59e0b;
-    font-size: 2.2 rem;
-    font-weight: 900;
-    margin: 0;
+    font-size: 1.8rem !important;
     text-transform: uppercase;
-    text-shadow: 3px 3px 0px #000;
+    text-shadow: 2px 2px 0px #000;
+    margin: 0;
 }
 
-/* ========================================
-   3. CUADRO DORADO Y BOTONES (TU ESTÉTICA)
-   ======================================== */
+/* 2. EL CUADRO: Altura fija razonable para que no empuje nada */
 .final-box-glow {
-    width: 95%;
-    max-width: 480px;
-    min-height: 200px;
+    width: 90%;
+    max-width: 450px;
+    /* Altura fija: lo suficiente para los equipos pero no para tapar botones */
+    height: 180px !important; 
     background: linear-gradient(145deg, #f59e0b, #d97706);
     border: 4px solid #fff;
     border-radius: 24px;
-    padding: 25px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    margin: 10px 0 !important;
 }
 
+/* 3. BOTONES: Justo debajo del cuadro */
 #buttons-container {
-    position: relative; /* Cambiado de fixed a relative para que no se superponga */
-    margin-top: 30px;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
-    padding-bottom: 40px; /* Espacio extra al final */
+    margin-top: 5px;
+    flex-shrink: 0;
 }
 
 button {
     background-color: #f59e0b;
-    color: #1e293b;
-    padding: 12px 40px;
+    padding: 12px 30px;
     font-size: 1rem;
     font-weight: bold;
     border-radius: 50px;
     border: none;
-    cursor: pointer;
     box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
 }
 
-.btn-atras {
-    background-color: rgba(71, 85, 105, 0.8) !important;
-    color: #f1f5f9 !important;
-}
-
-@media (max-width: 768px) {
-    .grand-final-title {
-        font-size: 1.6rem; /* Aún más pequeño en móvil vertical */
-        margin-bottom: 10px;
-    }
-    
-    .title-container img {
-        height: 40px; /* Logos más discretos */
-    }
-}
-
-/* ============================================================
-   SOLUCIÓN UNIVERSAL: ADAPTACIÓN AUTOMÁTICA A TODO MÓVIL
-   ============================================================ */
-@media (orientation: landscape) and (max-height: 500px) {
-
-    /* 1. Forzamos que el contenedor ocupe EXACTAMENTE la pantalla visible */
-    .final-main-wrapper {
-        height: 100vh !important;
-        height: 100dvh !important; /* Unidad especial para móviles (ignora barras del navegador) */
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: space-evenly !important; /* Reparte el espacio de forma equitativa */
-        padding: 5px !important;
-        overflow: hidden !important; /* Prohibido el scroll */
-        box-sizing: border-box;
-    }
-
-    /* 2. TÍTULOS: Permitimos que se adapten un poco si no hay espacio */
-    .title-container {
-        flex-shrink: 1; /* Si falta espacio, el título puede achicarse un pelo */
-        margin: 0 !important;
-    }
-
-    .grand-final-title {
-        font-size: clamp(1rem, 4vh, 1.8rem) !important; /* Tamaño fluido según la pantalla */
-        margin: 0 !important;
-    }
-
-    /* 3. EL CUADRO: Altura dinámica (nunca más del 40% de la pantalla) */
+/* ========================================
+   AJUSTE ESPECIAL PARA CUANDO LO TUMBASH
+   ======================================== */
+@media (orientation: landscape) {
     .final-box-glow {
-        width: 90% !important;
-        max-width: 500px;
-        height: 35vh !important; /* Se adapta al 35% de la altura total del móvil */
-        min-height: 80px !important; 
-        margin: 0 auto !important;
-        padding: 5px 15px !important;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-shrink: 2; /* Es el primero en encogerse si los botones no caben */
+        height: 110px !important; /* Más bajito si el móvil está tumbado */
+        margin: 5px 0 !important;
     }
-
-    /* 4. BOTONES: Siempre presentes al final */
-    #buttons-container {
-        position: relative !important;
-        margin: 0 !important;
-        padding: 5px 0 !important;
-        display: flex !important;
-        justify-content: center;
-        gap: 20px !important;
-        flex-shrink: 0; /* PROHIBIDO encogerse: los botones son sagrados */
+    .grand-final-title {
+        font-size: 1.4rem !important;
     }
-
-    button {
-        padding: 10px 25px !important; /* Tamaño cómodo */
-        font-size: 0.9rem !important;
-        white-space: nowrap; /* Que el texto no se rompa */
+    .title-container img {
+        height: 30px;
     }
 }
