@@ -48,26 +48,19 @@
 @media (orientation: landscape) {
 
     .final-main-wrapper {
-        /* Permitimos scroll si hace falta */
-        max-height: 100vh;
-        overflow-y: auto;
         padding: 10px 15px;
         align-items: center;
-    }
-
-    .grand-final-title {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
+        justify-content: flex-start; /* mejor que center para no encoger el cuadro */
     }
 
     .final-box-glow {
-        width: 85%;
-        max-width: 420px;
+        max-width: 420px; /* No se hace demasiado pequeño */
         min-height: 180px;
         padding: 20px;
     }
 
     #buttons-container {
+        position: static;
         margin-top: 15px;
     }
 }
