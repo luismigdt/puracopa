@@ -117,61 +117,49 @@ button {
     }
 }
 
-/* ========================================
-   SOLUCIÓN PARA MODO HORIZONTAL (LANDSCAPE)
-   ======================================== */
-/* ============================================================
-   SOLUCIÓN PARA MÓVIL HORIZONTAL (SIN SCROLL Y CUADRO GRANDE)
-   ============================================================ */
 @media (orientation: landscape) and (max-height: 500px) {
 
-    /* 1. Forzamos al contenedor a medir exactamente la pantalla y no dejar hacer scroll */
     .final-main-wrapper {
         height: 100vh !important;
-        overflow: hidden !important; /* Bloquea el scroll */
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important; /* Centra todo el bloque */
+        justify-content: center !important; /* Mantiene el bloque centrado */
         padding: 5px !important;
+        overflow: hidden !important; 
     }
 
-    /* 2. Minimizamos el título para que no robe espacio */
+    /* Título en su sitio y discreto */
     .title-container {
-        margin: 0 !important;
-        transform: scale(0.7); /* Lo hacemos más pequeño */
-        flex-shrink: 0; /* Que no se aplaste */
+        margin: 0 0 5px 0 !important;
+        transform: scale(0.75); 
     }
 
-    .grand-final-title {
-        margin: 0 !important;
-        font-size: 1.2rem !important;
-    }
-
-    /* 3. EL CUADRO: Le ordenamos que crezca para ocupar el hueco rojo */
+    /* EL CUADRO: Ahora con límite de altura para que no sea gigante */
     .final-box-glow {
-        flex: 1 !important; /* <--- ESTO ES LO CLAVE: Obliga al cuadro a estirarse */
-        width: 95% !important;
-        max-width: 600px;
-        margin: 5px auto !important; /* Margen mínimo con el título y botones */
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important; /* Centra el contenido (0-0) dentro del cuadro */
-        padding: 10px !important;
-        min-height: 0 !important; /* Permite que flex trabaje bien */
+        flex: none !important; /* Quitamos el flex:1 para que no se estire de más */
+        width: 85% !important; /* Un poco menos ancho para que se vea estilizado */
+        max-width: 480px;
+        max-height: 55vh !important; /* Limitamos la altura al 55% de la pantalla */
+        margin: 0 auto !important;
+        padding: 15px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    /* 4. BOTONES: Los pegamos justo debajo del cuadro */
+    /* BOTONES: Justo debajo, sin huecos rojos gigantes */
     #buttons-container {
         position: relative !important;
-        margin: 0 !important; /* Eliminamos el hueco rojo */
+        margin-top: 10px !important; /* Espacio justo con el cuadro */
         padding-bottom: 5px !important;
-        flex-shrink: 0; /* Que no desaparezcan */
-        gap: 10px !important;
+        display: flex !important;
+        justify-content: center;
+        gap: 20px;
     }
 
-    #buttons-container button {
-        padding: 8px 20px !important;
+    button {
+        padding: 8px 25px !important;
         font-size: 0.85rem !important;
-        height: auto !important;
     }
+}
 }
