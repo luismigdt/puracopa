@@ -1,5 +1,5 @@
 /* ========================================================
-   REPLICAR POSICIÓN ORIGINAL (PC Y MÓVIL)
+
    ======================================================== */
 
 /* 1. Forzamos que la cabecera sea sagrada (18vh como en styles.css) */
@@ -71,5 +71,10 @@
     .final-box-glow {
         transform: scale(0.8);
         margin-top: -20px;
+    }
+    .buttons-container {
+        position: relative;
+        bottom: auto;
+        margin-top: 20px;
     }
 }
