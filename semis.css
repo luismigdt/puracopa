@@ -100,128 +100,66 @@
 @media (max-width: 932px) and (orientation: landscape) {
 
     .bracket-wrapper {
-        /* Cambiamos height a min-height para que el contenido pueda crecer hacia abajo */
         min-height: calc(100vh - 100px); 
         height: auto;
         display: flex;
+        flex-direction: column; /* Vertical para que los botones queden debajo */
         align-items: center;
-        justify-content: center;
-        padding: 20px 0 100px 0; /* Padding inferior extra para los botones */
-        overflow-y: auto; /* Permite scroll vertical si la pantalla es muy baja */
+        justify-content: flex-start;
+        padding: 20px 10px 20px 10px;
+        overflow-y: auto; /* Permite scroll si no cabe todo */
+        box-sizing: border-box;
     }
 
     .semis-bracket {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap; /* Permite que los cuadros bajen a la siguiente fila si no caben */
         justify-content: center;
         align-items: flex-start;
-        gap: 30px;
-        width: max-content;
-        /* Reducimos un poco la escala para ganar espacio vertical */
-        transform: scale(0.85); 
-        transform-origin: top center;
-    }
-}
-
-/* ============================================
-   AJUSTE DE BOTONES
-   ============================================ */
-#buttons-container {
-    position: fixed; /* O 'sticky' si prefieres que sigan el scroll */
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px; /* Altura fija para el área de botones */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent); /* Sutil sombra para legibilidad */
-    z-index: 9999;
-    pointer-events: none;
-}
-
-#buttons-container button {
-    pointer-events: auto;
-    /* Ajuste para que no sean tan altos en horizontal */
-    padding: 10px 30px; 
-}
-
-@media (max-height: 450px) and (orientation: landscape) {
-    /* Si el móvil es muy bajito (como un iPhone SE en horizontal) */
-    #buttons-container {
-        position: relative; /* Los botones se ponen al final del scroll, no flotan */
-        margin-top: 20px;
-        padding-bottom: 20px;
-    }
-}
-
-/* ============================================
-   TABLETS / PANTALLAS MEDIANAS (769px - 1024px)
-   ============================================ */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .semis-bracket {
         gap: 20px;
-        max-width: 95%;
+        width: 100%;
+        max-width: 100%;
+        transform: none; /* Quitamos el escalado forzado */
+    }
+
+    .semi-block,
+    .final-block {
+        flex: 1 1 250px; /* Se adaptan según el espacio disponible */
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .semi-block .match,
     .final-block .match {
         width: 100%;
-        max-width: 260px;
-        min-height: 160px;
-    }
-}
-
-/* ============================================
-   PANTALLAS GRANDES (>1400px)
-   ============================================ */
-@media (min-width: 1400px) {
-    .semis-bracket {
-        max-width: 1300px;
-        gap: 60px;
+        min-height: 120px;
     }
 
-    .semi-block .match,
-    .final-block .match {
-        max-width: 320px;
-        min-height: 220px;
+    .semi-block .round-title,
+    .final-block .round-title {
+        font-size: 1rem;
+        margin-bottom: 10px;
     }
-}
 
-/* ============================================
-   BOTONES ATRÁS / SIGUIENTE (FIJOS)
-   ============================================ */
-#buttons-container {
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    z-index: 9999;
-    pointer-events: none;
-}
+    /* BOTONES ABAJO SIN SUPERPONERSE */
+    #buttons-container {
+        position: relative; /* Ahora va debajo del bracket, no flotando */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+        padding-bottom: 20px;
+        background: none; /* Sin sombra flotante */
+        pointer-events: auto;
+    }
 
-#buttons-container button {
-    pointer-events: auto;
-    min-width: 150px;
-    padding: 12px 35px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-.btn-atras {
-    background-color: rgba(71, 85, 105, 0.8);
-    color: #f1f5f9;
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-.btn-atras:hover {
-    background-color: rgba(100, 116, 139, 1);
-    transform: translateY(-2px);
+    #buttons-container button {
+        min-width: 120px;
+        padding: 10px 25px;
+        font-size: 0.95rem;
+    }
 }
