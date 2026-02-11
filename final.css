@@ -55,7 +55,7 @@ html, body {
 
 .grand-final-title {
     color: #f59e0b;
-    font-size: 3.5rem; /* El tamaño grande que tenías */
+    font-size: 2.2 rem;
     font-weight: 900;
     margin: 0;
     text-transform: uppercase;
@@ -106,54 +106,67 @@ button {
     color: #f1f5f9 !important;
 }
 
+@media (max-width: 768px) {
+    .grand-final-title {
+        font-size: 1.6rem; /* Aún más pequeño en móvil vertical */
+        margin-bottom: 10px;
+    }
+    
+    .title-container img {
+        height: 40px; /* Logos más discretos */
+    }
+}
+
 /* ========================================
-   4. SOLUCIÓN PARA GIRO DE MÓVIL (LANDSCAPE)
+   3. SOLUCIÓN DEFINITIVA PARA HORIZONTAL (LANDSCAPE)
+   Para que quepa todo sin hacer SCROLL
    ======================================== */
 @media (orientation: landscape) and (max-height: 500px) {
     
-    /* 1. Quitamos espacios innecesarios en el contenedor principal */
+    /* Quitamos el padding del contenedor para ganar altura */
     .final-main-wrapper {
         padding: 5px 10px !important;
-        justify-content: center; /* Centra el bloque verticalmente */
-        height: 100vh; /* Forzamos a que no crezca más que la pantalla */
+        justify-content: center;
     }
 
-    /* 2. Reducimos el área del título al mínimo */
+    /* Título mínimo */
     .title-container {
         margin-bottom: 5px !important;
         margin-top: 0 !important;
-        gap: 10px;
-    }
-
-    .title-container img {
-        height: 30px !important; /* Logos muy pequeños */
     }
 
     .grand-final-title {
-        font-size: 1.2rem !important; /* Título pequeño para ganar espacio */
-        text-shadow: 1px 1px 0px #000;
+        font-size: 1.1rem !important; /* Título muy compacto */
+        margin-bottom: 5px !important;
     }
 
-    /* 3. El Cuadro Dorado se adapta para dejar sitio a los botones */
+    .title-container img {
+        height: 25px !important;
+    }
+
+    /* Cuadro Dorado compacto */
     .final-box-glow {
-        width: 80% !important; /* Un poco más estrecho para que respire */
-        max-width: 450px;
-        min-height: auto !important; /* No forzamos altura */
-        padding: 10px 20px !important; /* Relleno interno mínimo */
+        width: 85% !important;
+        max-width: 420px;
+        min-height: auto !important; /* IMPORTANTE: Deja que el cuadro se encoja */
+        padding: 10px 15px !important;
         margin: 0 auto;
-        border-width: 2px !important; /* Borde más fino */
     }
 
-    /* 4. Botones: Se pegan al cuadro sin superponerse */
+    /* Reducimos el tamaño del texto dentro del cuadro si fuera necesario */
+    .final-box-glow .fila-equipo {
+        font-size: 0.8rem !important;
+    }
+
+    /* Botones pegados al cuadro */
     #buttons-container {
-        margin-top: 8px !important;
-        padding-bottom: 5px !important;
-        position: relative !important; /* Mantiene el flujo debajo del cuadro */
-        bottom: auto !important;
+        margin-top: 10px !important;
+        padding-bottom: 10px !important;
+        position: relative !important;
     }
 
     button {
-        padding: 6px 20px !important; /* Botones más bajitos */
-        font-size: 0.85rem !important;
+        padding: 6px 15px !important;
+        font-size: 0.8rem !important;
     }
 }
