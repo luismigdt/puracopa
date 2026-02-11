@@ -120,46 +120,54 @@ button {
 @media (orientation: landscape) and (max-height: 500px) {
 
     .final-main-wrapper {
-        height: 100vh !important;
+        height: 100vh !important; /* Forzamos que el fondo ocupe solo la pantalla visible */
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important; /* Mantiene el bloque centrado */
+        justify-content: center !important; /* Todo el grupo al centro */
         padding: 5px !important;
-        overflow: hidden !important; 
+        overflow: hidden !important; /* Bloqueamos el scroll */
     }
 
-    /* Título en su sitio y discreto */
+    /* Título aún más discreto para ganar espacio arriba */
     .title-container {
-        margin: 0 0 5px 0 !important;
-        transform: scale(0.75); 
+        margin: 0 !important;
+        transform: scale(0.7); 
+        flex-shrink: 0;
     }
 
-    /* EL CUADRO: Ahora con límite de altura para que no sea gigante */
+    .grand-final-title {
+        font-size: 1.1rem !important;
+        margin-bottom: 2px !important;
+    }
+
+    /* EL CUADRO: Reducimos su altura máxima para que los botones suban */
     .final-box-glow {
-        flex: none !important; /* Quitamos el flex:1 para que no se estire de más */
-        width: 85% !important; /* Un poco menos ancho para que se vea estilizado */
-        max-width: 480px;
-        max-height: 55vh !important; /* Limitamos la altura al 55% de la pantalla */
-        margin: 0 auto !important;
-        padding: 15px !important;
+        flex: none !important;
+        width: 85% !important; 
+        max-width: 450px;
+        /* Bajamos de 55vh a 45vh para asegurar que los botones entren */
+        max-height: 45vh !important; 
+        margin: 5px auto !important;
+        padding: 8px 15px !important; /* Relleno interno más apretado */
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
-    /* BOTONES: Justo debajo, sin huecos rojos gigantes */
+    /* BOTONES: Los pegamos al cuadro eliminando márgenes */
     #buttons-container {
         position: relative !important;
-        margin-top: 10px !important; /* Espacio justo con el cuadro */
+        margin-top: 5px !important; /* Distancia mínima */
         padding-bottom: 5px !important;
         display: flex !important;
         justify-content: center;
-        gap: 20px;
+        gap: 15px !important;
+        flex-shrink: 0;
     }
 
     button {
-        padding: 8px 25px !important;
-        font-size: 0.85rem !important;
+        padding: 6px 20px !important; /* Botones un pelín más bajos */
+        font-size: 0.8rem !important;
+        height: auto !important;
     }
-}
 }
