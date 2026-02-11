@@ -120,60 +120,58 @@ button {
 /* ========================================
    SOLUCIÓN PARA MODO HORIZONTAL (LANDSCAPE)
    ======================================== */
+/* ============================================================
+   SOLUCIÓN PARA MÓVIL HORIZONTAL (SIN SCROLL Y CUADRO GRANDE)
+   ============================================================ */
 @media (orientation: landscape) and (max-height: 500px) {
 
-    /* 1. Ajuste del contenedor principal */
+    /* 1. Forzamos al contenedor a medir exactamente la pantalla y no dejar hacer scroll */
     .final-main-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* Alinea todo desde arriba */
-        align-items: center;
+        height: 100vh !important;
+        overflow: hidden !important; /* Bloquea el scroll */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; /* Centra todo el bloque */
         padding: 5px !important;
-        height: 100vh;
-        overflow-y: auto; /* Por si el contenido crece mucho */
     }
 
-    /* 2. El título "PURA COPA" y "GRAN FINAL" */
+    /* 2. Minimizamos el título para que no robe espacio */
     .title-container {
-        margin: 5px 0 !important;
-        transform: scale(0.8); /* Lo encogemos un poco para ganar espacio */
+        margin: 0 !important;
+        transform: scale(0.7); /* Lo hacemos más pequeño */
+        flex-shrink: 0; /* Que no se aplaste */
     }
 
     .grand-final-title {
+        margin: 0 !important;
         font-size: 1.2rem !important;
-        margin-bottom: 5px !important;
     }
 
-    /* 3. EL CUADRO: Ahora ocupará el máximo espacio posible */
+    /* 3. EL CUADRO: Le ordenamos que crezca para ocupar el hueco rojo */
     .final-box-glow {
-        width: 90% !important; /* Casi todo el ancho */
-        max-width: 600px;      /* Pero que no se estire infinito */
-        min-height: auto !important;
-        flex-grow: 0;          /* No obliga a crecer, deja espacio abajo */
-        padding: 10px 20px !important;
-        margin-bottom: 10px !important; /* Espacio de seguridad para los botones */
-        border-width: 3px !important;
+        flex: 1 !important; /* <--- ESTO ES LO CLAVE: Obliga al cuadro a estirarse */
+        width: 95% !important;
+        max-width: 600px;
+        margin: 5px auto !important; /* Margen mínimo con el título y botones */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; /* Centra el contenido (0-0) dentro del cuadro */
+        padding: 10px !important;
+        min-height: 0 !important; /* Permite que flex trabaje bien */
     }
 
-    /* 4. BOTONES: Debajo del cuadro, con separación y bien alineados */
+    /* 4. BOTONES: Los pegamos justo debajo del cuadro */
     #buttons-container {
-        position: relative !important; /* ¡IMPORTANTE! Quita cualquier 'fixed' o 'absolute' */
-        display: flex !important;
-        flex-direction: row !important; /* Botones uno al lado del otro */
-        justify-content: center;
-        gap: 20px !important; /* Separación entre ellos */
-        width: 100%;
-        margin-top: 5px !important;
-        padding-bottom: 15px !important;
-        top: auto !important; /* Resetea posiciones previas */
-        bottom: auto !important;
+        position: relative !important;
+        margin: 0 !important; /* Eliminamos el hueco rojo */
+        padding-bottom: 5px !important;
+        flex-shrink: 0; /* Que no desaparezcan */
+        gap: 10px !important;
     }
 
     #buttons-container button {
-        padding: 10px 30px !important;
-        font-size: 0.9rem !important;
-        min-width: 120px;
-        /* Aseguramos que el botón no sea más alto de la cuenta */
+        padding: 8px 20px !important;
+        font-size: 0.85rem !important;
         height: auto !important;
     }
 }
