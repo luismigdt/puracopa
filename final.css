@@ -53,9 +53,25 @@
 
 @media (orientation: landscape) {
 
-    #buttons-container {
-        position: static;
-        margin-top: 25px;
+    .final-main-wrapper {
+        height: 100vh;
+        justify-content: center;
+        padding: 10px 15px;
     }
 
+    .grand-final-title {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .final-box-glow {
+        max-width: 420px;
+        min-height: auto;
+        padding: 15px;
+    }
+
+    #buttons-container {
+        position: static;
+        margin-top: 15px;
+    }
 }
